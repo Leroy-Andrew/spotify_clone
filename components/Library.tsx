@@ -6,7 +6,7 @@ import { TbPlaylist } from "react-icons/tb";
 const Library = () => {
   const onClick = () => {
     //handle upload later
-  }
+  };
   return (
     <div className="flex flex-col">
       <div
@@ -28,11 +28,13 @@ const Library = () => {
           <TbPlaylist className="text-neutral-400" size={26} />
           <p
             className="
-           text-neutral-400
+          text-neutral-400
            font-medium
            text-md
            "
-          >Your Library</p>
+          >
+            Your Library
+          </p>
         </div>
         <AiOutlinePlus
           onClick={onClick}
@@ -46,17 +48,19 @@ const Library = () => {
          "
         />
       </div>
-      <div className="
+      <div
+        className="
        flex
        flex-col
        gap-y-2
        mt-4
        px-3
-      ">
+      "
+      >
         List of songs.
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Library
+export default Library;
