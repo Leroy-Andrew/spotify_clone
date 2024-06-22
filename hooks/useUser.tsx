@@ -1,8 +1,8 @@
 import { Subscription, UserDetails } from "@/types";
 
-import { User } from "@supabase/auth-helpers-nextjs";
 import { createContext, useContext, useEffect, useState } from "react";
 import {
+  User,
   useSessionContext,
   useUser as useSupaUser,
 } from "@supabase/auth-helpers-react";
@@ -29,6 +29,7 @@ export const MyUserContextProvider = (props: Props) => {
     isLoading: isLoadingUser,
     supabaseClient: supabase,
   } = useSessionContext();
+
   const user = useSupaUser();
   const accessToken = session?.access_token ?? null;
   const [isLoadingData, setIsLoadingData] = useState(false);
@@ -73,10 +74,10 @@ export const MyUserContextProvider = (props: Props) => {
     user,
     userDetails,
     isLoading: isLoadingUser || isLoadingData,
-    subscription
+    subscription,
   };
 
-  return <UserContext.Provider value={value} {...props} />
+  return <UserContext.Provider value={value} {...props} />;
 };
 
 export const useUser = () => {
@@ -86,4 +87,4 @@ export const useUser = () => {
   }
 
   return context;
-}
+};

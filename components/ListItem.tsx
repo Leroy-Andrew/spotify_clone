@@ -16,7 +16,7 @@ const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
   const onClick = () => {
     // Add authentication before push!
     router.push(href);
-  }
+  };
 
   return (
     <button
@@ -35,21 +35,16 @@ const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
      pr-4
      "
     >
-      <div className="
+      <div
+        className="
        relative
        min-h-[64px]
        min-w-[64px]
-      ">
-        <Image
-          className="object-cover"
-          fill
-          src={image}
-          alt="image"
-        />
+      "
+      >
+        <Image className="object-cover" fill src={image} alt="image" />
       </div>
-      <p className="font-medium truncate py-5">
-        {name}
-      </p>
+      <p className="font-medium truncate py-5">{name}</p>
       <div
         className="
         absolute
@@ -70,7 +65,7 @@ const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
         <FaPlay className="text-black" />
       </div>
     </button>
-  )
+  );
 };
 
 export default ListItem;

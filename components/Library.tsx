@@ -13,17 +13,17 @@ const Library = () => {
         className="
         flex
         items-center
-        justtify-between
+        justify-between
         px-5
         pt-4
        "
       >
         <div
           className="
-        inline-flex
-        items-center
-        gap-x-2
-       "
+            inline-flex
+            items-center
+            gap-x-2
+          "
         >
           <TbPlaylist className="text-neutral-400" size={26} />
           <p
