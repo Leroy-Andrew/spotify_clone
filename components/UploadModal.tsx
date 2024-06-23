@@ -28,6 +28,7 @@ const UploadModal = () => {
       title: "",
       song: null,
       image: null,
+      updateImage: false, // new field to track if image needs to be updated
     },
   });
 
@@ -45,8 +46,18 @@ const UploadModal = () => {
       const imageFile = values.image?.[0];
       const songFile = values.song?.[0];
 
-      if (!imageFile || !songFile || !user) {
-        toast.error("Missing fields");
+      if (!imageFile && !values.updateImage) {
+        toast.error("Missing image");
+        return;
+      }
+
+      if (!songFile) {
+        toast.error("Missing song");
+        return;
+      }
+
+      if (!user) {
+        toast.error("User not found");
         return;
       }
 
@@ -66,14 +77,27 @@ const UploadModal = () => {
         return;
       }
 
-      // Upload image
-      const { data: imageData, error: imageError } =
-        await supabaseClient.storage
+      let imageData;
+      let imageError;
+
+      if (values.updateImage) {
+        // Update image
+        imageData = await supabaseClient.storage
+          .from("images")
+          .update(`image-${values.title}-${uniqueId}`, imageFile, {
+            cacheControl: "3600",
+            upsert: false,
+          });
+        imageError = imageData.error;
+      } else {
+        // Upload new image
+        ({ data: imageData, error: imageError } = await supabaseClient.storage
           .from("images")
           .upload(`image-${values.title}-${uniqueId}`, imageFile, {
             cacheControl: "3600",
             upsert: false,
-          });
+          }));
+      }
 
       if (imageError) {
         setIsLoading(false);
