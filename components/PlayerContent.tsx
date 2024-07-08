@@ -140,8 +140,9 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
         transition
         "
         />
+
         <div
-          onClick={() => {}}
+          onClick={handlePlay}
           className="
          flex
          items-center
